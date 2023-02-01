@@ -19,7 +19,7 @@ public class MySessionFactory {
         properties.put(Environment.URL, "jdbc:p6spy:mysql://localhost:3306/rpg");
         properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
         properties.put(Environment.USER, "root");
-        properties.put(Environment.PASS, "rootadmin");
+        properties.put(Environment.PASS, "root");
         properties.put(Environment.HBM2DDL_AUTO, "update");
 
         sessionFactory = new Configuration().

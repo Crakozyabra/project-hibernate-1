@@ -4,7 +4,6 @@ import com.game.entity.Player;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -24,15 +23,18 @@ public class PlayerRepositoryDB implements IPlayerRepository {
     @Override
     public List<Player> getAll(int pageNumber, int pageSize) {
         Session session = sessionFactory.openSession();
-        NativeQuery<Player> players = session.createNativeQuery("SELECT * FROM rpg.player", Player.class);
-        return players.list();
+        NativeQuery<Player> playersQuery = session.createNativeQuery("SELECT * FROM rpg.player LIMIT :pageSize OFFSET :pageSize_pageNumber", Player.class);
+        playersQuery.setParameter("pageSize", pageSize);
+        playersQuery.setParameter("pageSize_pageNumber", pageSize*pageNumber);
+        List<Player> players = playersQuery.getResultList();
+        return players;
     }
 
     @Override
     public int getAllCount() {
         Session session = sessionFactory.openSession();
-        Query<Player> allPlayersCount = session.createNamedQuery("getallcount", Player.class);
-        return allPlayersCount.list().size();
+        Query<Player> allPlayersCount = session.createNamedQuery("getAllCount", Player.class);
+        return allPlayersCount.getResultList().size();
     }
 
     @Override

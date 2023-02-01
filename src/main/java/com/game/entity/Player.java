@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @org.hibernate.annotations.NamedQueries({
-        @org.hibernate.annotations.NamedQuery(name = "getallcount",
+        @org.hibernate.annotations.NamedQuery(name = "getAllCount",
                 query = "FROM Player"
         )
 })
@@ -16,7 +16,7 @@ import java.util.Date;
 @Table(name = "player", schema = "rpg")
 public class Player {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name", nullable = false, length = 12)
