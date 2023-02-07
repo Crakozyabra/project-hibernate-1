@@ -1,7 +1,6 @@
 package com.game.entity;
 
 
-
 import jakarta.persistence.*;
 
 
@@ -23,8 +22,10 @@ public class Player {
     private String name;
     @Column(name = "title", nullable = false, length = 30)
     private String title;
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "race", nullable = false)
     private Race race;
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "profession", nullable = false)
     private Profession profession;
     @Column(name = "birthday", nullable = false)
