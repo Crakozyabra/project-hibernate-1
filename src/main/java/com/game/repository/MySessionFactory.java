@@ -21,6 +21,8 @@ public class MySessionFactory {
         properties.put(Environment.USER, "root");
         properties.put(Environment.PASS, "root");
         properties.put(Environment.HBM2DDL_AUTO, "update");
+        //properties.put(Environment.SHOW_SQL, "true");
+        //properties.put(Environment.FORMAT_SQL, "true");
 
         sessionFactory = new Configuration().
                 setProperties(properties).
